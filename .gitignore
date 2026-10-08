@@ -1,0 +1,6 @@
+# I added these rules to keep private and generated backend files out of GitHub.
+
+node_modules/
+.env
+*.db
+dist/

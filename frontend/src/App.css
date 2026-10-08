@@ -1,0 +1,703 @@
+/* I redesigned the MovieShelf colors to give the website a more cinematic movie theme. */
+
+
+/* =========================
+   theme colors
+   ========================= */
+
+/* I added these variables so I can easily change the whole website between light and dark mode. */
+:root {
+  /* I used warm white and cream colors for the light movie theme. */
+  --background: #faf7f1;
+  --surface: #fffdf9;
+  --text: #171717;
+  --secondary-text: #68625c;
+
+  /* I added deep red as the main movie/action color. */
+  --red: #a90012;
+  --red-hover: #c40018;
+
+  /* I added gold as an accent color for the cinematic look. */
+  --gold: #c9942e;
+  --gold-light: #e5c477;
+
+  /* I added these colors for borders and form elements. */
+  --border: #e8ddcf;
+  --input-background: #fffaf2;
+  --input-border: #d9cdbd;
+
+  /* I kept the navigation dark so it still feels like a movie website. */
+  --nav-background: #111111;
+  --nav-text: #ffffff;
+
+  /* I changed the hero section to use a deep cinematic black. */
+  --hero-background: #151515;
+  --hero-text: #ffffff;
+  --hero-muted: #d7d0c8;
+
+  /* I added dark colors for the movie preview card. */
+  --movie-card-background: #211d1b;
+  --movie-placeholder: #302925;
+  --movie-muted: #c2b9af;
+
+  /* I added a warm divider color instead of the previous gray. */
+  --divider: #ded1c1;
+}
+
+
+/* I created a black, red, and gold color combination for dark mode. */
+.dark-theme {
+  --background: #080808;
+  --surface: #121212;
+  --text: #f7f1e8;
+  --secondary-text: #b9b0a7;
+
+  /* I made the red brighter in dark mode so buttons stand out. */
+  --red: #e50920;
+  --red-hover: #ff1c35;
+
+  /* I kept gold for important movie-related accents. */
+  --gold: #e0a832;
+  --gold-light: #f0c75b;
+
+  --border: #392b27;
+  --input-background: #181514;
+  --input-border: #4a3731;
+
+  --nav-background: #050505;
+  --nav-text: #ffffff;
+
+  /* I made the hero almost completely black for a stronger cinema feel. */
+  --hero-background: #050505;
+  --hero-text: #ffffff;
+  --hero-muted: #c9c1b9;
+
+  --movie-card-background: #171313;
+  --movie-placeholder: #282020;
+  --movie-muted: #aaa09a;
+
+  --divider: #382725;
+}
+
+
+/* =========================
+   basic page styling
+   ========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+
+  background-color: var(--background);
+  color: var(--text);
+
+  /* I added a small transition so switching themes does not look sudden. */
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+a {
+  color: inherit;
+}
+
+
+/* =========================
+   navigation
+   ========================= */
+
+.navbar {
+  height: 76px;
+  padding: 0 7%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: var(--nav-background);
+  color: var(--nav-text);
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* I made the MovieShelf logo slightly stronger to match a movie brand. */
+.logo {
+  font-family: Georgia, serif;
+  font-size: 27px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* I added a red accent to the end of the logo for the movie theme. */
+.logo::first-letter {
+  color: var(--red);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 15px;
+
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--gold-light);
+}
+
+
+/* I changed the Get Started button to red so it becomes the main action. */
+.register-link {
+  padding: 11px 20px;
+
+  background-color: var(--red);
+  color: white;
+
+  border: 1px solid var(--red);
+  border-radius: 24px;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.register-link:hover {
+  background-color: var(--red-hover);
+  color: white !important;
+  transform: translateY(-1px);
+}
+
+
+/* =========================
+   theme toggle button
+   ========================= */
+
+/* I added a rounded theme button so users can easily switch between the two movie themes. */
+.theme-button {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: transparent;
+  color: var(--gold-light);
+
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+
+  font-size: 18px;
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.theme-button:hover {
+  background-color: var(--gold);
+  color: #111111;
+  transform: rotate(15deg);
+}
+
+
+/* =========================
+   home page
+   ========================= */
+
+.home-page {
+  min-height: calc(100vh - 76px);
+}
+
+
+/* I kept the hero section dark in both themes because it gives MovieShelf a cinematic opening. */
+.hero {
+  min-height: 620px;
+  padding: 80px 8%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 80px;
+
+  background-color: var(--hero-background);
+  color: var(--hero-text);
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.hero-content {
+  max-width: 620px;
+}
+
+
+/* I changed the small heading to gold so it looks like a movie poster label. */
+.small-heading {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 3px;
+
+  margin-bottom: 18px;
+
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+
+
+/* I used a serif font for the main heading to give the site a more cinematic style. */
+.hero h1 {
+  font-family: Georgia, serif;
+
+  font-size: 72px;
+  line-height: 1;
+
+  margin: 0 0 28px;
+}
+
+
+/* I highlighted the second part of the hero heading with red. */
+.hero h1 br + * {
+  color: var(--red);
+}
+
+.hero-text {
+  max-width: 500px;
+
+  font-size: 18px;
+  line-height: 1.7;
+
+  color: var(--hero-muted);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+
+  margin-top: 35px;
+}
+
+
+/* =========================
+   buttons
+   ========================= */
+
+/* I made the main button red because red is the strongest action color in the new theme. */
+.primary-button,
+.secondary-button {
+  display: inline-block;
+
+  padding: 13px 25px;
+
+  border-radius: 28px;
+
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.primary-button {
+  background-color: var(--red);
+  color: white;
+
+  border: 1px solid var(--red);
+}
+
+.primary-button:hover {
+  background-color: var(--red-hover);
+  transform: translateY(-2px);
+}
+
+
+/* I used a gold outline for secondary actions to match the movie theme. */
+.secondary-button {
+  background-color: transparent;
+
+  border: 1px solid var(--gold);
+  color: var(--gold-light);
+}
+
+.secondary-button:hover {
+  background-color: var(--gold);
+  color: #111111;
+}
+
+
+/* =========================
+   hero movie card
+   ========================= */
+
+.hero-card {
+  width: 330px;
+  padding: 22px;
+
+  background-color: var(--movie-card-background);
+
+  border: 1px solid #4b3830;
+  border-radius: 20px;
+
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.movie-card-top {
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 12px;
+  letter-spacing: 2px;
+
+  margin-bottom: 18px;
+
+  color: var(--gold-light);
+}
+
+.movie-placeholder {
+  height: 320px;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--movie-placeholder),
+      #160f0e
+    );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 75px;
+
+  transition: background-color 0.3s ease;
+}
+
+.hero-card h3 {
+  margin: 20px 0 8px;
+
+  font-family: Georgia, serif;
+  font-size: 20px;
+}
+
+.hero-card p {
+  margin: 0;
+
+  color: var(--movie-muted);
+}
+
+
+/* =========================
+   features section
+   ========================= */
+
+.features {
+  padding: 90px 8%;
+
+  background-color: var(--background);
+
+  transition:
+    background-color 0.3s ease;
+}
+
+
+/* I used a serif heading here too so the whole site has the same cinematic identity. */
+.section-heading h2 {
+  font-family: Georgia, serif;
+
+  font-size: 42px;
+  line-height: 1.15;
+
+  margin-top: 10px;
+}
+
+.feature-grid {
+  margin-top: 50px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 25px;
+}
+
+
+/* I added warm cards in light mode and dark cards in dark mode using the same variables. */
+.feature-card {
+  padding: 35px;
+
+  background-color: var(--surface);
+
+  border: 1px solid var(--border);
+  border-radius: 18px;
+
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.feature-card:hover {
+  border-color: var(--red);
+  transform: translateY(-4px);
+}
+
+.feature-card span {
+  font-size: 30px;
+}
+
+.feature-card h3 {
+  margin: 25px 0 10px;
+
+  font-family: Georgia, serif;
+  font-size: 21px;
+}
+
+.feature-card p {
+  line-height: 1.6;
+  color: var(--secondary-text);
+}
+
+
+/* =========================
+   login and register pages
+   ========================= */
+
+.auth-page {
+  min-height: calc(100vh - 76px);
+
+  padding: 70px 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--background);
+
+  transition:
+    background-color 0.3s ease;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 480px;
+
+  padding: 45px;
+
+  background-color: var(--surface);
+
+  border: 1px solid var(--border);
+  border-radius: 20px;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+
+/* I used a serif font for the login title to make the authentication pages match the home page. */
+.auth-card h1 {
+  font-family: Georgia, serif;
+
+  font-size: 38px;
+
+  margin: 10px 0 15px;
+}
+
+.auth-description {
+  color: var(--secondary-text);
+
+  line-height: 1.6;
+
+  margin-bottom: 30px;
+}
+
+.auth-card form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-card label {
+  margin: 15px 0 7px;
+
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.auth-card input {
+  padding: 14px;
+
+  background-color: var(--input-background);
+  color: var(--text);
+
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+
+  font-size: 15px;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.auth-card input::placeholder {
+  color: var(--secondary-text);
+}
+
+.auth-card input:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.auth-card button {
+  margin-top: 25px;
+}
+
+.auth-footer {
+  margin-top: 25px;
+
+  text-align: center;
+
+  color: var(--secondary-text);
+}
+
+.auth-footer a {
+  color: var(--red);
+  font-weight: bold;
+}
+
+
+/* =========================
+   shelf page
+   ========================= */
+
+.shelf-page {
+  min-height: calc(100vh - 76px);
+
+  padding: 70px 8%;
+
+  background-color: var(--background);
+
+  transition:
+    background-color 0.3s ease;
+}
+
+.shelf-header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 1px solid var(--divider);
+
+  padding-bottom: 35px;
+}
+
+.shelf-header h1 {
+  font-family: Georgia, serif;
+
+  font-size: 48px;
+
+  margin: 10px 0;
+}
+
+.shelf-header p {
+  color: var(--secondary-text);
+}
+
+.empty-shelf {
+  min-height: 400px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 55px;
+  margin-bottom: 10px;
+}
+
+.empty-shelf h2 {
+  font-family: Georgia, serif;
+  font-size: 28px;
+}
+
+.empty-shelf p {
+  color: var(--secondary-text);
+  margin-bottom: 25px;
+}
+
+
+/* =========================
+   responsive layout
+   ========================= */
+
+@media (max-width: 800px) {
+
+  .navbar {
+    padding: 0 5%;
+  }
+
+  .nav-links {
+    gap: 12px;
+  }
+
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero h1 {
+    font-size: 52px;
+  }
+
+  .hero-card {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shelf-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+  }
+}
